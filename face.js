@@ -34,20 +34,6 @@ function Face() {
   this.face=new myFace();
 
 
-
-  // console.log(1);
-  // // these are state variables for a face
-  // // (your variables should be different!)
-  // this.detailColour = [204, 136, 17];
-  // this.mainColour = [51, 119, 153];
-  // this.num_eyes = 2;    // can be either 1 (cyclops) or 2 (two eyes)
-  // this.eye_shift = -1;   // range is -10 to 10
-  // this.mouth_size = 1;  // range is 0.5 to 8
-
-  // this.chinColour = [153, 153, 51]
-  // this.lipColour = [136, 68, 68]
-  // this.eyebrowColour = [119, 85, 17]
-
   // /*
   //  * Draw the face with position lists that include:
   //  *    chin, right_eye, left_eye, right_eyebrow, left_eyebrow
@@ -55,11 +41,16 @@ function Face() {
   //  */  
    this.draw = function(positions) {
     push();
-    scale(0.5);
+    scale(1);
+   // console.log(positions);
     this.face.drawFace(positions);
+   
+    // stroke(225,255,255);
+    // this.draw_segment(positions.top_lip);
+    // //this.draw_segment(positions.bottom_lip);
     pop();
    }
-  //   console.log(positions);
+  
   //   // head
   //   ellipseMode(CENTER);
   //   stroke(stroke_color);
