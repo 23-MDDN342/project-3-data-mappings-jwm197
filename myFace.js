@@ -174,10 +174,13 @@ class myFace{
     }
   }
   drawMouth(){
+   
     fill(this.mouthColour);
     rectMode(CENTER);
-    this.mouthY=(segment_average(this.positions.bottom_lip)[1]+segment_average(this.positions.top_lip)[1])/2;
-    
+
+    this.mouthY=0.1+(segment_average(this.positions.bottom_lip)[1]+segment_average(this.positions.top_lip)[1])/2;
+    this.mouthWidth=this.positions.top_lip[6][0]-this.positions.top_lip[0][0];
+    this.mouthHeight=this.positions.bottom_lip[3][1]-this.positions.top_lip[4][1];
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
    //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
     if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){

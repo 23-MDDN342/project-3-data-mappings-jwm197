@@ -42,17 +42,23 @@ function Face() {
    this.draw = function(positions) {
     push();
     scale(1);
-   // console.log(positions);
+   console.log(positions);
     this.face.drawFace(positions);
    
   stroke(225,255,255);
   //  this.draw_segment(positions.nose_bridge);
-    stroke(225,0,0);
-  //  this.draw_segment(positions.nose_tip);
-    this.draw_segment(positions.bottom_lip);
-    stroke(0,225,0);
-    //  this.draw_segment(positions.nose_tip);
-      this.draw_segment(positions.top_lip);
+    // stroke(225,0,0);
+    // this.draw_segment(positions.nose_tip);
+    // // this.draw_segment(positions.bottom_lip);
+    //   stroke(0,225,0);
+    // // // //  this.draw_segment(positions.nose_tip);
+    //     this.draw_segment(positions.top_lip);
+
+      //  stroke(255);
+      //   ellipse(positions.top_lip[0][0],positions.top_lip[0][1],.05);
+      //   ellipse(positions.top_lip[6][0],positions.top_lip[6][1],.05);
+      //  ellipse(positions.top_lip[4][0],positions.top_lip[4][1],.05);
+      //  ellipse(positions.bottom_lip[3][0],positions.bottom_lip[3][1],.05);
     pop();
    }
   
