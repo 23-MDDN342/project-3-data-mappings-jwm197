@@ -1,1 +1,1 @@
-I have resized the mouth to make itfollow the facial tracking data. i had to add a small offset on the y axis to move the mouth away from the nose as there was some overlap in the faces with a narrower gap. 
+I have resized the eye so that it has its width mapped to the width of the facial data. I have made the height that of the eye is that of 2* the gap between the eye and eyebrow as using the the eyes height would have made the eye too small. The eyes look weird being different sizes. I am unsure what to do about this given technically it is due to the photo angles. 

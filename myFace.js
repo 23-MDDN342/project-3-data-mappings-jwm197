@@ -250,23 +250,28 @@ class myFace{
     // segment_average(positions.right_eye);
     //left eye
     fill(this.eyeBallCol);
-    ellipse( segment_average(this.positions.left_eye)[0], this.eyeY, this.eyeWidth, this.eyeHeight);
+    let leftEyeWidth=this.positions.left_eye[3][0]-this.positions.left_eye[0][0];
+    let leftEyeHeight=2*(segment_average(this.positions.left_eye)[1]-this.positions.left_eyebrow[2][1]);
+    ellipse( segment_average(this.positions.left_eye)[0], this.eyeY, leftEyeWidth, leftEyeHeight);
     if(!this.eyeStroke){
       strokeWeight(0);
     }
     
     fill(this.eyeCentreCol);
-    ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+    ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, leftEyeWidth*this.innerEyeWidth, leftEyeHeight*this.innerEyeHeight);
     strokeWeight(myStrokeWeight);
     // //draw right eye if not a cyclops
+    let rightEyeWidth=this.positions.right_eye[3][0]-this.positions.right_eye[0][0];
+    let rightEyeHeight=2*(segment_average(this.positions.right_eye)[1]-this.positions.right_eyebrow[2][1]);
+
     // if(this.eyeX!=0){
       fill(this.eyeBallCol);
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, this.eyeWidth, this.eyeHeight);
+      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth, this.eyeHeight);
       fill(this.eyeCentreCol);
       if(!this.eyeStroke){
         strokeWeight(0);
       }
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, this.eyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
       strokeWeight(myStrokeWeight);
     //}
   }
