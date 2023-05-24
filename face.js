@@ -45,9 +45,14 @@ function Face() {
    // console.log(positions);
     this.face.drawFace(positions);
    
-    // stroke(225,255,255);
-    // this.draw_segment(positions.top_lip);
-    // //this.draw_segment(positions.bottom_lip);
+  stroke(225,255,255);
+  //  this.draw_segment(positions.nose_bridge);
+    stroke(225,0,0);
+  //  this.draw_segment(positions.nose_tip);
+    this.draw_segment(positions.bottom_lip);
+    stroke(0,225,0);
+    //  this.draw_segment(positions.nose_tip);
+      this.draw_segment(positions.top_lip);
     pop();
    }
   

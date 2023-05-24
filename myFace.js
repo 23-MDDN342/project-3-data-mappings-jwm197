@@ -271,22 +271,28 @@ class myFace{
     fill(this.noseCol);
     //make gap between mouth and nose if nose and mouth are too close
     let noseHeightReduction=0;
-    if(this.noseY+this.noseHeight/2+minMouthNoseGap>=this.mouthY-this.mouthHeight/2){
-      noseHeightReduction=minMouthNoseGap;
-    }
+    // if(this.noseY+this.noseHeight/2+minMouthNoseGap>=this.mouthY-this.mouthHeight/2){
+    //   noseHeightReduction=minMouthNoseGap;
+    // }
     
-    //this.noseHeight=this.positions[27][1];
+    this.noseX=this.positions.nose_bridge[0][0];
     //draw left facing:
     if(this.noseDirection=="left"){
-      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      
+      triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[0][0],this.positions.nose_tip[2][1]);
+
+      //triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      // triangle(this.positions.nose_bridge[0][0],this.positions.nose_bridge[0][1],this.positions.nose_bridge[0][0],this.positions.nose_tip[2][1],this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
     //draw right facing:
     else if(this.noseDirection=="right"){
-      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      //triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[4][0],this.positions.nose_tip[2][1]);
     }
     //draw symetrical nose
     else{
-      triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      // triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      triangle(this.noseX,this.positions.nose_bridge[0][1],this.positions.nose_tip[4][0],this.positions.nose_tip[2][1],this.positions.nose_tip[0][0],this.positions.nose_tip[2][1]);
     }
    
   }
