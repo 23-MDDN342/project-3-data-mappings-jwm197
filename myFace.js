@@ -1,30 +1,30 @@
 //my consts 
 //sideburns
 const faceScale=0.5;
-
+const eyeHeightScalar=7;
 const sideBurns = ["none", "square", "triangle"];
 const minSideBurnHeight=.1*faceScale;
 const maxSideBurnHeight=3*faceScale;
 //nose
-const minNoseHeight=0.5*faceScale;
-const maxNoseHeight=4*faceScale;
-const minNoseWidth=0.5*faceScale;
-const maxNoseWidth=6*faceScale;
-const minNoseY=-1.5*faceScale;
-const maxNoseY=1.5*faceScale; 
+// const minNoseHeight=0.5*faceScale;
+// const maxNoseHeight=4*faceScale;
+// const minNoseWidth=0.5*faceScale;
+// const maxNoseWidth=6*faceScale;
+// const minNoseY=-1.5*faceScale;
+// const maxNoseY=1.5*faceScale; 
 const noseDirections = ["left", "right", "both"];
 //eyes
-const minEyeX=.5*faceScale;
-const minEyeWidth=1*faceScale;
-const maxEyeWidth=5*faceScale;
-const minEyeHeight=1*faceScale;
-const maxEyeHeight=5*faceScale;
+// const minEyeX=.5*faceScale;
+// const minEyeWidth=1*faceScale;
+// const maxEyeWidth=5*faceScale;
+// const minEyeHeight=1*faceScale;
+// const maxEyeHeight=5*faceScale;
 const minInnerEyeWidth=.1*faceScale;
 const maxInnerEyeWidth=1*faceScale;
 const minInnerEyeHeight=.1*faceScale;
 const maxInnerEyeHeight=1*faceScale;
-const eyeResizeSize=1;
-const innerEyeResizeSize=0.7;
+// const eyeResizeSize=1;
+// const innerEyeResizeSize=0.7;
 //ear
 const minEarY=-1*faceScale;
 const maxEarY=1*faceScale;
@@ -34,12 +34,12 @@ const maxInnerEarWidth=0.6;
 const minInnerEarHeight=.1;
 const maxInnerEarHeight=.6;
 //mouth
-const minMouthHeight=.5*faceScale;
-const minMouthWidth=.5*faceScale;
-const maxMouthWidth=7*faceScale;
+// const minMouthHeight=.5*faceScale;
+// const minMouthWidth=.5*faceScale;
+// const maxMouthWidth=7*faceScale;
 const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
-const minMouthNoseGap=.25*faceScale;
+// const minMouthNoseGap=.25*faceScale;
 
 
 const myStrokeWeight=0.2*faceScale;
@@ -48,7 +48,7 @@ const myStrokeWeight=0.2*faceScale;
 const red=[188,66,46];
 const yellow=[225,191,91];
 const blue=[31,62,109];
-const black=[15,17,7];
+const black=[0,0,0];
 const grey=[211,211,209];
 const white=[255,255,255];
 const myBgCol=[35,168,178];//light blue
@@ -66,7 +66,7 @@ class myFace{
   hairColour=blue;
   
   sideBurnHeight=0;
-  noseX=0;
+  //noseX=0;
   eyeBallCol=white;
   eyeCentreCol=black;
   eyeY=-3*faceScale;
@@ -77,56 +77,30 @@ class myFace{
   noseCol=grey;
   
   constructor(){
-    this.faceX=0;
+
     this.sideBurn=sideBurns[Math.floor(p5.prototype.random() * sideBurns.length)];
     if(this.sideBurn!="none"){
       this.sideBurnHeight=p5.prototype.random(minSideBurnHeight,maxSideBurnHeight);
     }
     this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
-    this.noseHeight=p5.prototype.random(minNoseHeight,maxNoseHeight);
+    
     this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
-    this.noseY=p5.prototype.random(minNoseY,maxNoseY);
-    this.noseWidth=p5.prototype.random(minNoseWidth,this.getMaxNoseWidth());
-    this.eyeWidth=p5.prototype.random(minEyeWidth,maxEyeWidth);
-    this.eyeX=p5.prototype.random(minEyeX,this.getMaxEyeX());
-    this.eyeHeight=p5.prototype.random(minEyeHeight,maxEyeHeight);
+ 
     this.innerEyeWidth=p5.prototype.random(minInnerEyeWidth,maxInnerEyeWidth);
     this.innerEyeHeight=p5.prototype.random(minInnerEyeHeight,maxInnerEyeHeight);
     this.earY=p5.prototype.random(minEarY,maxEarY);
     this.innerEarWidth=this.earWidth*p5.prototype.random(minInnerEarWidth,maxInnerEarWidth);
     this.innerEarHeight=this.headHeight*p5.prototype.random(minInnerEarHeight,this.getMaxInnerEarHeight());
-    this.mouthHeight=p5.prototype.random(minMouthHeight,this.getMaxMouthHeight());
-    this.mouthWidth=p5.prototype.random(minMouthWidth,maxMouthWidth);
+  
     this.hasTeeth=Math.random()<0.6;
-    this.mouthY=p5.prototype.random(this.getMinMouthY(),this.getMaxMouthY());
+   
     this.numberOfteeth=Math.floor(p5.prototype.random(minNumberOfteeth,maxNumberOfTeeth));
    
   
   }
   
-  getMaxEyeX(){
-    return this.headWidth/2+this.eyeWidth*.25;
-  }
-  getMinMouthY(){
-    return this.noseY+this.noseHeight/2+this.mouthHeight/2; 
-  }
-  getMaxMouthY(){
-    return this.headHeight/2-this.mouthHeight/2;
-  }
-  getMaxMouthHeight(){
-    return this.headHeight/2-(this.noseY+this.noseHeight/2);
-  }
-  getMaxNoseWidth(){
-    if (this.noseDirection=="right"||this.earShape=="none"){
-      return maxNoseWidth;
-    }
-    return this.headWidth/2-.3;
-  }
+  
   getMaxInnerEarHeight(){
-    let size=map(this.headHeight/2+this.sideBurnHeight,this.headHeight/2+minSideBurnHeight,this.headHeight/2+maxSideBurnHeight,minInnerEarHeight,maxInnerEarHeight);
-    if(size<maxInnerEarHeight){
-      return size;
-    }
     return maxInnerEarHeight;
   }
   
@@ -155,16 +129,13 @@ class myFace{
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
-    if(this.earY+this.innerEarHeight/2>this.headHeight/4){
-      this.earShape="none";
-      return;
-    }
+    
     if(this.earShape=="circle"){
       ellipseMode(CENTER);
       ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
     }
     else if(this.earShape=="square"){
-      
+      rectMode(CENTER);
       rect(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
     }
     else if(this.earShape=="triangle"){
@@ -214,66 +185,33 @@ class myFace{
   }
   drawEyes(){
 
-    // //resize the inner eye width or height so that there is some white in the eye if both are a large size
-    // if(this.innerEyeWidth>innerEyeResizeSize&&this.innerEyeHeight>innerEyeResizeSize-.1){
-    //   //do a more extreme resize if the eye is tiny and the pupil is big 
-    //   if(this.innerEyeWidth+this.innerEyeHeight>=1.1&&this.eyeWidth+this.eyeHeight<3){
-        
-    //     if(this.innerEyeWidth<this.innerEyeHeight){
-    //       this.innerEyeWidth=.4;
-    //     }
-    //     else{
-    //       this.innerEyeHeight=.4;
-    //     }
-    //     this.eyeStroke=false;
-    //   }
-    //   //resize whichever is smaller of height and width to keep it about a 50% chance of which is being resized
-    //   else if(this.innerEyeWidth<this.innerEyeHeight){
-    //     this.innerEyeWidth=innerEyeResizeSize;
-    //   }
-    //   else{
-    //     this.innerEyeHeight=innerEyeResizeSize;
-    //   }
-    // }
-    //  //resize the eyes if both the width and heigh are so small they just look black
-    //  if(this.eyeWidth<eyeResizeSize&&this.eyeHeight<eyeResizeSize){
-    //   if(this.eyeWidth<this.eyeHeight){
-    //     this.eyeWidth=eyeResizeSize;
-    //   }
-    // }
-
-    // //make a cyclops if the eyes will overlap   
-    // if(this.eyeX-this.eyeWidth/2<0){
-    //   this.eyeX=0;
-    // }
-    // segment_average(positions.left_eye);
-    // segment_average(positions.right_eye);
     //left eye
     fill(this.eyeBallCol);
     let leftEyeWidth=this.positions.left_eye[3][0]-this.positions.left_eye[0][0];
-    let leftEyeHeight=2*(segment_average(this.positions.left_eye)[1]-this.positions.left_eyebrow[2][1]);
-    ellipse( segment_average(this.positions.left_eye)[0], this.eyeY, leftEyeWidth, leftEyeHeight);
-    if(!this.eyeStroke){
-      strokeWeight(0);
-    }
+    let leftEyeHeight=eyeHeightScalar*(this.positions.left_eye[4][1]-this.positions.left_eye[2][1]);
+    ellipse(segment_average(this.positions.left_eye)[0],
+     this.eyeY, 
+     leftEyeWidth,
+      leftEyeHeight);
+    
+    
+    
     
     fill(this.eyeCentreCol);
     ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, leftEyeWidth*this.innerEyeWidth, leftEyeHeight*this.innerEyeHeight);
     strokeWeight(myStrokeWeight);
-    // //draw right eye if not a cyclops
+    // //draw right eye 
     let rightEyeWidth=this.positions.right_eye[3][0]-this.positions.right_eye[0][0];
-    let rightEyeHeight=2*(segment_average(this.positions.right_eye)[1]-this.positions.right_eyebrow[2][1]);
+    let rightEyeHeight=eyeHeightScalar*(this.positions.right_eye[5][1]-this.positions.right_eye[1][1]);
 
-    // if(this.eyeX!=0){
+    
       fill(this.eyeBallCol);
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth, this.eyeHeight);
+      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth, rightEyeHeight);
       fill(this.eyeCentreCol);
-      if(!this.eyeStroke){
-        strokeWeight(0);
-      }
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth*this.innerEyeWidth, this.eyeHeight*this.innerEyeHeight);
+      
+      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth*this.innerEyeWidth, rightEyeHeight*this.innerEyeHeight);
       strokeWeight(myStrokeWeight);
-    //}
+    
   }
   drawNose(){
     fill(this.noseCol);

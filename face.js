@@ -4,10 +4,11 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = true;
+var DEBUG_MODE = //false;
+true;
 
 // this can be used to set the number of sliders to show
-var NUM_SLIDERS = 20;
+var NUM_SLIDERS = 11;
 
 // other variables can be in here too
 // here's some examples for colors used
@@ -47,8 +48,9 @@ function Face() {
    
   // stroke(225,255,255);
   // //  this.draw_segment(positions.nose_bridge);
-  //    stroke(225,0,0);
-  //    this.draw_segment(positions.left_eye);
+    //  stroke(225,0,0);
+    //  this.draw_segment(positions.left_eye);
+    //  this.draw_segment(positions.right_eye);
   //    this.draw_segment(positions.left_eyebrow);
     // this.draw_segment(positions.nose_tip);
     // // this.draw_segment(positions.bottom_lip);
@@ -57,6 +59,10 @@ function Face() {
     //     this.draw_segment(positions.top_lip);
 
       //  stroke(255);
+      //   ellipse(positions.left_eye[2][0],positions.left_eye[2][1],.05);
+      //   ellipse(positions.left_eye[4][0],positions.left_eye[4][1],.05);
+      //   ellipse(positions.right_eye[1][0],positions.right_eye[1][1],.05);
+      //   ellipse(positions.right_eye[5][0],positions.right_eye[5][1],.05);
       //   ellipse(positions.top_lip[0][0],positions.top_lip[0][1],.05);
       //   ellipse(positions.top_lip[6][0],positions.top_lip[6][1],.05);
       //  ellipse(positions.top_lip[4][0],positions.top_lip[4][1],.05);
@@ -158,25 +164,25 @@ function Face() {
     
     
     
-    this.face.noseDirection=noseDirections[Math.floor(map(settings[3], 0, 100, 0,noseDirections.length))];
+    this.face.noseDirection=noseDirections[Math.floor(map(settings[2], 0, 100, 0,noseDirections.length))];
     
     //this.face.noseY=map(settings[4], 0, 100, minNoseY, maxNoseY);
     //this.face.noseWidth=map(settings[5], 0, 100, minNoseWidth, this.face.getMaxNoseWidth());
     
     //this.face.eyeWidth=map(settings[6], 0, 100, minEyeWidth, maxEyeWidth);
     //this.face.eyeHeight=map(settings[7], 0, 100, minEyeHeight, maxEyeHeight);
-    this.face.innerEyeWidth=map(settings[8], 0, 100, minInnerEyeWidth, maxInnerEyeWidth);
-    this.face.innerEyeHeight=map(settings[9], 0, 100, minInnerEyeHeight, maxInnerEyeHeight);
+    this.face.innerEyeWidth=map(settings[3], 0, 100, minInnerEyeWidth, maxInnerEyeWidth);
+    this.face.innerEyeHeight=map(settings[4], 0, 100, minInnerEyeHeight, maxInnerEyeHeight);
     //this.face.eyeX=map(settings[10], 0, 100, minEyeX, this.face.getMaxEyeX());
-    this.face.earShape=earShapes[Math.floor(map(settings[11], 0, 100, 0,earShapes.length))];
-    this.face.earY=map(settings[12], 0, 100, minEarY, maxEarY);
-    this.face.innerEarWidth=this.face.earWidth*map(settings[13], 0, 100, minInnerEarWidth, maxInnerEarWidth);
-    this.face.innerEarHeight=this.face.headHeight*map(settings[14], 0, 100, minInnerEarHeight, this.face.getMaxInnerEarHeight());
-    this.face.hasTeeth=0.5<map(settings[15], 0, 100, 0,1);
+    this.face.earShape=earShapes[Math.floor(map(settings[5], 0, 100, 0,earShapes.length))];
+    this.face.earY=map(settings[6], 0, 100, minEarY, maxEarY);
+    this.face.innerEarWidth=this.face.earWidth*map(settings[7], 0, 100, minInnerEarWidth, maxInnerEarWidth);
+    this.face.innerEarHeight=this.face.headHeight*map(settings[8], 0, 100, minInnerEarHeight, this.face.getMaxInnerEarHeight());
+    this.face.hasTeeth=0.5<map(settings[9], 0, 100, 0,1);
     //this.face.mouthWidth=map(settings[16], 0, 100, minMouthWidth,maxMouthWidth);
     //this.face.mouthHeight=map(settings[17],0,100,minMouthHeight,this.face.getMaxMouthHeight());
     //this.face.mouthY=map(settings[18], 0, 100, this.face.getMinMouthY(), this.face.getMaxMouthY());
-    this.face.numberOfteeth=Math.floor(map(settings[19], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
+    this.face.numberOfteeth=Math.floor(map(settings[10], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
 
     
   }
@@ -190,23 +196,23 @@ function Face() {
     //settings[2] = map(this.face.noseHeight, minNoseHeight, maxNoseHeight, 0, 100);
    
 
-    settings[3]=map(noseDirections.indexOf(this.face.noseDirection), 0,noseDirections.length, 0, 100);
+    settings[2]=map(noseDirections.indexOf(this.face.noseDirection), 0,noseDirections.length, 0, 100);
     //settings[4]=map(this.face.noseY, minNoseY, maxNoseY, 0, 100);
     //settings[5]=map(this.face.noseWidth,  minNoseWidth, this.face.getMaxNoseWidth(),0, 100);
     //settings[6]=map(this.face.eyeWidth, minEyeWidth, maxEyeWidth, 0, 100);
     //settings[7]=map(this.face.eyeHeight, minEyeHeight, maxEyeHeight, 0, 100);
-    settings[8]= map(this.face.innerEyeWidth, minInnerEyeWidth, maxInnerEyeWidth, 0, 100);
-    settings[9]=map(this.face.innerEyeHeight, minInnerEyeHeight, maxInnerEyeHeight, 0, 100);
+    settings[3]= map(this.face.innerEyeWidth, minInnerEyeWidth, maxInnerEyeWidth, 0, 100);
+    settings[4]=map(this.face.innerEyeHeight, minInnerEyeHeight, maxInnerEyeHeight, 0, 100);
     //settings[10]=map(this.face.eyeX, minEyeX, this.face.getMaxEyeX(), 0, 100);
-    settings[11]=map(earShapes.indexOf(this.face.earShape), 0,earShapes.length, 0, 100);
-    settings[12]= map(this.face.earY, minEarY, maxEarY, 0, 100);
-    settings[13]=map(this.face.innerEarWidth/this.face.earWidth, minInnerEarWidth, maxInnerEarWidth, 0, 100);
-    settings[14]=map(this.face.innerEarHeight/this.face.headHeight, minInnerEarHeight, this.face.getMaxInnerEarHeight(), 0, 100);
-    settings[15]=map(this.face.hasTeeth?1:0, 0,1, 0, 100);
+    settings[5]=map(earShapes.indexOf(this.face.earShape), 0,earShapes.length, 0, 100);
+    settings[6]= map(this.face.earY, minEarY, maxEarY, 0, 100);
+    settings[7]=map(this.face.innerEarWidth/this.face.earWidth, minInnerEarWidth, maxInnerEarWidth, 0, 100);
+    settings[8]=map(this.face.innerEarHeight/this.face.headHeight, minInnerEarHeight, this.face.getMaxInnerEarHeight(), 0, 100);
+    settings[9]=map(this.face.hasTeeth?1:0, 0,1, 0, 100);
     //settings[16]=map(this.face.mouthWidth, minMouthWidth,maxMouthWidth, 0, 100);
     //settings[17]= map(this.face.mouthHeight,minMouthHeight,this.face.getMaxMouthHeight(),0,100);
     //settings[18]=map(this.face.mouthY, this.face.getMinMouthY(), this.face.getMaxMouthY(), 0, 100);
-    settings[19]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
+    settings[10]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
     
     
     
