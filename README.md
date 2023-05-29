@@ -1,2 +1,2 @@
 
-This gap between the eye height and eyebrow height didn't look good as there could be significant deviation between the left and right eye heights depending on the expression in the eye brows so the eye height is now defined as 7* the eye height in the positional data.I have also significantly culled the number of sliders as initially I put all 20 of the parameters in and now there is just 11 but some of these can probably be culled further.  
+I have cleaned up code and made default values the middle of the sliders. I also spent far too long realising I needed to round not floor to get indexes working properly with the sliders.  

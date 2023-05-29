@@ -2,9 +2,9 @@
 //sideburns
 const faceScale=0.5;
 const eyeHeightScalar=7;
-const sideBurns = ["none", "square", "triangle"];
+const sideBurns = [ "triangle", "square","none"];
 const minSideBurnHeight=.1*faceScale;
-const maxSideBurnHeight=3*faceScale;
+const maxSideBurnHeight=4*faceScale;
 //nose
 // const minNoseHeight=0.5*faceScale;
 // const maxNoseHeight=4*faceScale;
@@ -12,7 +12,8 @@ const maxSideBurnHeight=3*faceScale;
 // const maxNoseWidth=6*faceScale;
 // const minNoseY=-1.5*faceScale;
 // const maxNoseY=1.5*faceScale; 
-const noseDirections = ["left", "right", "both"];
+
+const noseDirections=["left","both","right"];
 //eyes
 // const minEyeX=.5*faceScale;
 // const minEyeWidth=1*faceScale;
@@ -77,28 +78,30 @@ class myFace{
   noseCol=grey;
   
   constructor(){
-
-    this.sideBurn=sideBurns[Math.floor(p5.prototype.random() * sideBurns.length)];
-    if(this.sideBurn!="none"){
-      this.sideBurnHeight=p5.prototype.random(minSideBurnHeight,maxSideBurnHeight);
-    }
-    this.earShape=earShapes[Math.floor(Math.random() * earShapes.length)];
     
-    this.noseDirection=noseDirections[Math.floor(Math.random() * noseDirections.length)];
- 
-    this.innerEyeWidth=p5.prototype.random(minInnerEyeWidth,maxInnerEyeWidth);
-    this.innerEyeHeight=p5.prototype.random(minInnerEyeHeight,maxInnerEyeHeight);
-    this.earY=p5.prototype.random(minEarY,maxEarY);
-    this.innerEarWidth=this.earWidth*p5.prototype.random(minInnerEarWidth,maxInnerEarWidth);
-    this.innerEarHeight=this.headHeight*p5.prototype.random(minInnerEarHeight,this.getMaxInnerEarHeight());
+    this.sideBurn="triangle";
+    
+    this.sideBurnHeight=this.getAverage(minSideBurnHeight,maxSideBurnHeight);
+    
+    this.earShape="square";
+    this.noseDirection="both";
   
-    this.hasTeeth=Math.random()<0.6;
+ 
+    this.innerEyeWidth=this.getAverage(minInnerEyeWidth,maxInnerEyeWidth);
+    this.innerEyeHeight=this.getAverage(minInnerEyeHeight,maxInnerEyeHeight);
+    this.earY=this.getAverage(minEarY,maxEarY);
+    this.innerEarWidth=this.earWidth*this.getAverage(minInnerEarWidth,maxInnerEarWidth);
+    this.innerEarHeight=this.headHeight*this.getAverage(minInnerEarHeight,this.getMaxInnerEarHeight());
+  
+    this.hasTeeth=true;
    
-    this.numberOfteeth=Math.floor(p5.prototype.random(minNumberOfteeth,maxNumberOfTeeth));
+    this.numberOfteeth=Math.floor(this.getAverage(minNumberOfteeth,maxNumberOfTeeth));
    
   
   }
-  
+  getAverage(min, max){
+    return map(0.5, 0, 1, min, max);
+  }
   
   getMaxInnerEarHeight(){
     return maxInnerEarHeight;
@@ -189,14 +192,7 @@ class myFace{
     fill(this.eyeBallCol);
     let leftEyeWidth=this.positions.left_eye[3][0]-this.positions.left_eye[0][0];
     let leftEyeHeight=eyeHeightScalar*(this.positions.left_eye[4][1]-this.positions.left_eye[2][1]);
-    ellipse(segment_average(this.positions.left_eye)[0],
-     this.eyeY, 
-     leftEyeWidth,
-      leftEyeHeight);
-    
-    
-    
-    
+    ellipse(segment_average(this.positions.left_eye)[0],this.eyeY, leftEyeWidth,leftEyeHeight);
     fill(this.eyeCentreCol);
     ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, leftEyeWidth*this.innerEyeWidth, leftEyeHeight*this.innerEyeHeight);
     strokeWeight(myStrokeWeight);
@@ -220,7 +216,7 @@ class myFace{
     // if(this.noseY+this.noseHeight/2+minMouthNoseGap>=this.mouthY-this.mouthHeight/2){
     //   noseHeightReduction=minMouthNoseGap;
     // }
-    
+   
     this.noseX=this.positions.nose_bridge[0][0];
     //draw left facing:
     if(this.noseDirection=="left"){
