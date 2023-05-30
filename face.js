@@ -4,8 +4,8 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE = false;
-//true;
+var DEBUG_MODE =// false;
+true;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 11;
@@ -70,71 +70,7 @@ function Face() {
    //pop();
    }
   
-  //   // head
-  //   ellipseMode(CENTER);
-  //   stroke(stroke_color);
-  //   fill(this.mainColour);
-  //   ellipse(segment_average(positions.chin)[0], 0, 3, 4);
-  //   noStroke();
-
-
-  //   // mouth
-  //   fill(this.detailColour);
-  //   ellipse(segment_average(positions.bottom_lip)[0], segment_average(positions.bottom_lip)[1], 1.36, 0.25 * this.mouth_size);
-
-  //   // eyebrows
-  //   fill( this.eyebrowColour);
-  //   stroke( this.eyebrowColour);
-  //   strokeWeight(0.08);
-  //   this.draw_segment(positions.left_eyebrow);
-  //   this.draw_segment(positions.right_eyebrow);
-
-  //   // draw the chin segment using points
-  //   fill(this.chinColour);
-  //   stroke(this.chinColour);
-  //   this.draw_segment(positions.chin);
-
-  //   fill(100, 0, 100);
-  //   stroke(100, 0, 100);
-  //   this.draw_segment(positions.nose_bridge);
-  //   this.draw_segment(positions.nose_tip);
-
-  //   strokeWeight(0.03);
-
-  //   fill(this.lipColour);
-  //   stroke(this.lipColour);
-  //   this.draw_segment(positions.top_lip);
-  //   this.draw_segment(positions.bottom_lip);
-
-  //   let left_eye_pos = segment_average(positions.left_eye);
-  //   let right_eye_pos = segment_average(positions.right_eye);
-
-  //   // eyes
-  //   noStroke();
-  //   let curEyeShift = 0.04 * this.eye_shift;
-  //   if(this.num_eyes == 2) {
-  //     fill(this.detailColour);
-  //     ellipse(left_eye_pos[0], left_eye_pos[1], 0.5, 0.33);
-  //     ellipse(right_eye_pos[0], right_eye_pos[1], 0.5, 0.33);
-
-  //     // fill(this.mainColour);
-  //     // ellipse(left_eye_pos[0] + curEyeShift, left_eye_pos[1], 0.18);
-  //     // ellipse(right_eye_pos[0] + curEyeShift, right_eye_pos[1], 0.18);
-  //   }
-  //   else {
-  //     let eyePosX = (left_eye_pos[0] + right_eye_pos[0]) / 2;
-  //     let eyePosY = (left_eye_pos[1] + right_eye_pos[1]) / 2;
-
-  //     fill(this.detailColour);
-  //     ellipse(eyePosX, eyePosY, 0.45, 0.27);
-
-  //     fill(this.mainColour);
-  //     ellipse(eyePosX - 0.1 + curEyeShift, eyePosY, 0.18);
-  //   }
-  //  // fill(0)
-  //  //ellipse(0,0, 0.5,0.5) center point
-  //  //rect(-2,-2,4.5,4) sizing debug 
-  // }
+  
 
   // // example of a function *inside* the face object.
   // // this draws a segment, and do_loop will connect the ends if true
@@ -184,10 +120,7 @@ function Face() {
    //console.log(map(sideBurns.indexOf(this.face.sideBurn),0,sideBurns.length, 0, 100));
      settings[1] = map(this.face.sideBurnHeight, minSideBurnHeight,maxSideBurnHeight,0, 100);
     //console.log(this.face.noseDirection);
-     let x=map(noseDirections.indexOf(this.face.noseDirection),0,noseDirections.length,0,100);
-    //console.log(this.face.noseDirection);
-    //console.log(x);
-    settings[2]=x;
+    settings[2]=map(noseDirections.indexOf(this.face.noseDirection),0,noseDirections.length,0,100);
     settings[3]= map(this.face.innerEyeWidth, minInnerEyeWidth, maxInnerEyeWidth, 0, 100);
     settings[4]=map(this.face.innerEyeHeight, minInnerEyeHeight, maxInnerEyeHeight, 0, 100);
     settings[5]=map(earShapes.indexOf(this.face.earShape), 0,earShapes.length, 0, 100);

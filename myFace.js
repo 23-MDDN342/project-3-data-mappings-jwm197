@@ -187,53 +187,51 @@ class myFace{
     stroke(0);
   }
   drawEyes(){
+    //calculate eye width and height:
+    let leftEyeWidth=this.positions.left_eye[3][0]-this.positions.left_eye[0][0];
+    let leftEyeHeight=eyeHeightScalar*(this.positions.left_eye[4][1]-this.positions.left_eye[2][1]);
+    let rightEyeWidth=this.positions.right_eye[3][0]-this.positions.right_eye[0][0];
+    let rightEyeHeight=eyeHeightScalar*(this.positions.right_eye[5][1]-this.positions.right_eye[1][1]);
+    let eyeHeight=this.getAverage(leftEyeHeight,rightEyeHeight);
+    let eyeWidth=this.getAverage(leftEyeWidth,rightEyeWidth);
 
     //left eye
     fill(this.eyeBallCol);
-    let leftEyeWidth=this.positions.left_eye[3][0]-this.positions.left_eye[0][0];
-    let leftEyeHeight=eyeHeightScalar*(this.positions.left_eye[4][1]-this.positions.left_eye[2][1]);
-    ellipse(segment_average(this.positions.left_eye)[0],this.eyeY, leftEyeWidth,leftEyeHeight);
-    fill(this.eyeCentreCol);
-    ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, leftEyeWidth*this.innerEyeWidth, leftEyeHeight*this.innerEyeHeight);
-    strokeWeight(myStrokeWeight);
-    // //draw right eye 
-    let rightEyeWidth=this.positions.right_eye[3][0]-this.positions.right_eye[0][0];
-    let rightEyeHeight=eyeHeightScalar*(this.positions.right_eye[5][1]-this.positions.right_eye[1][1]);
+    
+   
 
+    ellipse(segment_average(this.positions.left_eye)[0],this.eyeY, eyeWidth,eyeHeight);
+    fill(this.eyeCentreCol);
+    ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
+    //strokeWeight(myStrokeWeight);
+    // //draw right eye 
+   
     
       fill(this.eyeBallCol);
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth, rightEyeHeight);
+      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth, eyeHeight);
       fill(this.eyeCentreCol);
       
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, rightEyeWidth*this.innerEyeWidth, rightEyeHeight*this.innerEyeHeight);
-      strokeWeight(myStrokeWeight);
+      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
+      //strokeWeight(myStrokeWeight);
     
   }
   drawNose(){
     fill(this.noseCol);
-    //make gap between mouth and nose if nose and mouth are too close
-    let noseHeightReduction=0;
-    // if(this.noseY+this.noseHeight/2+minMouthNoseGap>=this.mouthY-this.mouthHeight/2){
-    //   noseHeightReduction=minMouthNoseGap;
-    // }
-   
+    
     this.noseX=this.positions.nose_bridge[0][0];
     //draw left facing:
     if(this.noseDirection=="left"){
       
       triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[0][0],this.positions.nose_tip[2][1]);
-
-      //triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
-      // triangle(this.positions.nose_bridge[0][0],this.positions.nose_bridge[0][1],this.positions.nose_bridge[0][0],this.positions.nose_tip[2][1],this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
     }
     //draw right facing:
     else if(this.noseDirection=="right"){
-      //triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+      
       triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[4][0],this.positions.nose_tip[2][1]);
     }
     //draw symetrical nose
     else{
-      // triangle(this.noseX,this.noseY-this.noseHeight/2,this.noseX+this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction,this.noseX-this.noseWidth,this.noseY+this.noseHeight/2-noseHeightReduction);
+     
       triangle(this.noseX,this.positions.nose_bridge[0][1],this.positions.nose_tip[4][0],this.positions.nose_tip[2][1],this.positions.nose_tip[0][0],this.positions.nose_tip[2][1]);
     }
    

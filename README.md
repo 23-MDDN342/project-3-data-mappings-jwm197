@@ -1,2 +1,1 @@
-
-I have cleaned up code and made default values the middle of the sliders. I also spent far too long realising I needed to round not floor to get indexes working properly with the sliders.  
+I have made the eyes the same size by making the width and height of them be the average of them. While this does technically take away from some of the individuality of each pose that each person is making but it looks more natural on the face I have made. 
