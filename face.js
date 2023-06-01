@@ -8,7 +8,7 @@ var DEBUG_MODE =// false;
 true;
 
 // this can be used to set the number of sliders to show
-var NUM_SLIDERS = 11;
+var NUM_SLIDERS = 9;
 
 // other variables can be in here too
 // here's some examples for colors used
@@ -46,13 +46,13 @@ function Face() {
   //  console.log(positions);
     this.face.drawFace(positions);
    
-  // stroke(225,255,255);
-  // //  this.draw_segment(positions.nose_bridge);
-    //  stroke(225,0,0);
+  stroke(225,255,255);
+   // this.draw_segment(positions.nose_bridge);
+     stroke(225,0,0);
     //  this.draw_segment(positions.left_eye);
     //  this.draw_segment(positions.right_eye);
   //    this.draw_segment(positions.left_eyebrow);
-    // this.draw_segment(positions.nose_tip);
+     //this.draw_segment(positions.nose_tip);
     // // this.draw_segment(positions.bottom_lip);
     //   stroke(0,225,0);
     // // // //  this.draw_segment(positions.nose_tip);
@@ -103,11 +103,10 @@ function Face() {
     
     this.face.earShape=earShapes[round(map(settings[5], 0, 100, 0,earShapes.length))];
     this.face.earY=map(settings[6], 0, 100, minEarY, maxEarY);
-    this.face.innerEarWidth=this.face.earWidth*map(settings[7], 0, 100, minInnerEarWidth, maxInnerEarWidth);
-    this.face.innerEarHeight=this.face.headHeight*map(settings[8], 0, 100, minInnerEarHeight, this.face.getMaxInnerEarHeight());
-    this.face.hasTeeth=0.5<map(settings[9], 0, 100, 0,1);
+   
+    this.face.hasTeeth=0.5<map(settings[7], 0, 100, 0,1);
     
-    this.face.numberOfteeth=Math.floor(map(settings[10], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
+    this.face.numberOfteeth=Math.floor(map(settings[8], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
 
     
   }
@@ -115,7 +114,7 @@ function Face() {
   // /* get internal properties as list of numbers 0-100 */
   this.getProperties = function() {
 
-    let settings = new Array(11);
+    let settings = new Array(9);
    settings[0] = map(sideBurns.indexOf(this.face.sideBurn),0,sideBurns.length, 0, 100);
    //console.log(map(sideBurns.indexOf(this.face.sideBurn),0,sideBurns.length, 0, 100));
      settings[1] = map(this.face.sideBurnHeight, minSideBurnHeight,maxSideBurnHeight,0, 100);
@@ -125,10 +124,9 @@ function Face() {
     settings[4]=map(this.face.innerEyeHeight, minInnerEyeHeight, maxInnerEyeHeight, 0, 100);
     settings[5]=map(earShapes.indexOf(this.face.earShape), 0,earShapes.length, 0, 100);
     settings[6]= map(this.face.earY, minEarY, maxEarY, 0, 100);
-    settings[7]=map(this.face.innerEarWidth/this.face.earWidth, minInnerEarWidth, maxInnerEarWidth, 0, 100);
-    settings[8]=map(this.face.innerEarHeight/this.face.headHeight, minInnerEarHeight, this.face.getMaxInnerEarHeight(), 0, 100);
-    settings[9]=map(this.face.hasTeeth?1:0, 0,1, 0, 100);
-    settings[10]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
+   
+    settings[7]=map(this.face.hasTeeth?1:0, 0,1, 0, 100);
+    settings[8]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
     
     return settings;
   }

@@ -20,10 +20,10 @@ const noseDirections=["left","both","right"];
 // const maxEyeWidth=5*faceScale;
 // const minEyeHeight=1*faceScale;
 // const maxEyeHeight=5*faceScale;
-const minInnerEyeWidth=.1*faceScale;
-const maxInnerEyeWidth=1*faceScale;
-const minInnerEyeHeight=.1*faceScale;
-const maxInnerEyeHeight=1*faceScale;
+const minInnerEyeWidth=.1;
+const maxInnerEyeWidth=1;
+const minInnerEyeHeight=.1;
+const maxInnerEyeHeight=.8;
 // const eyeResizeSize=1;
 // const innerEyeResizeSize=0.7;
 //ear
@@ -132,7 +132,8 @@ class myFace{
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
-    
+    this.innerEarWidth=.7*(this.positions.left_eyebrow[this.positions.left_eyebrow.length-1][0]-this.positions.left_eyebrow[0][0]);
+    this.innerEarHeight=1.1*(this.positions.right_eyebrow[this.positions.right_eyebrow.length-1][0]-this.positions.right_eyebrow[0][0]);
     if(this.earShape=="circle"){
       ellipseMode(CENTER);
       ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
@@ -155,6 +156,9 @@ class myFace{
     this.mouthY=0.1+(segment_average(this.positions.bottom_lip)[1]+segment_average(this.positions.top_lip)[1])/2;
     this.mouthWidth=this.positions.top_lip[6][0]-this.positions.top_lip[0][0];
     this.mouthHeight=this.positions.bottom_lip[3][1]-this.positions.top_lip[4][1];
+    let mouthX=(segment_average(this.positions.bottom_lip)[0]+segment_average(this.positions.top_lip)[0])/2;
+    push();
+    translate(mouthX,0);
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
    //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
     if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
@@ -163,6 +167,7 @@ class myFace{
         line(-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY-this.mouthHeight/2,-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY+this.mouthHeight/2);
       }
     }
+    pop();
   }
   drawHair(){
     fill(this.hairColour);
@@ -203,8 +208,8 @@ class myFace{
     ellipse(segment_average(this.positions.left_eye)[0],this.eyeY, eyeWidth,eyeHeight);
     fill(this.eyeCentreCol);
     ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
-    //strokeWeight(myStrokeWeight);
-    // //draw right eye 
+    
+    //draw right eye 
    
     
       fill(this.eyeBallCol);
@@ -212,22 +217,20 @@ class myFace{
       fill(this.eyeCentreCol);
       
       ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
-      //strokeWeight(myStrokeWeight);
-    
   }
   drawNose(){
     fill(this.noseCol);
-    
+    let sidewaysTipOffset=0.1;
     this.noseX=this.positions.nose_bridge[0][0];
     //draw left facing:
     if(this.noseDirection=="left"){
       
-      triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[0][0],this.positions.nose_tip[2][1]);
+      triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[0][0]-sidewaysTipOffset,this.positions.nose_tip[2][1]);
     }
     //draw right facing:
     else if(this.noseDirection=="right"){
       
-      triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[4][0],this.positions.nose_tip[2][1]);
+      triangle(this.noseX,this.positions.nose_bridge[0][1],this.noseX,this.positions.nose_tip[2][1],this.positions.nose_tip[4][0]+sidewaysTipOffset,this.positions.nose_tip[2][1]);
     }
     //draw symetrical nose
     else{
