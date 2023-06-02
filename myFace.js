@@ -6,41 +6,24 @@ const sideBurns = [ "triangle", "square","none"];
 const minSideBurnHeight=.1*faceScale;
 const maxSideBurnHeight=4*faceScale;
 //nose
-// const minNoseHeight=0.5*faceScale;
-// const maxNoseHeight=4*faceScale;
-// const minNoseWidth=0.5*faceScale;
-// const maxNoseWidth=6*faceScale;
-// const minNoseY=-1.5*faceScale;
-// const maxNoseY=1.5*faceScale; 
 
 const noseDirections=["left","both","right"];
 //eyes
-// const minEyeX=.5*faceScale;
-// const minEyeWidth=1*faceScale;
-// const maxEyeWidth=5*faceScale;
-// const minEyeHeight=1*faceScale;
-// const maxEyeHeight=5*faceScale;
-const minInnerEyeWidth=.1;
-const maxInnerEyeWidth=1;
-const minInnerEyeHeight=.1;
-const maxInnerEyeHeight=.8;
-// const eyeResizeSize=1;
-// const innerEyeResizeSize=0.7;
+const pupilSizes=["wide","tall","small"];
+const minInnerEyeWidth=.3;
+const maxInnerEyeWidth=0.76;
+const minInnerEyeHeight=.3;
+const maxInnerEyeHeight=.63;
+
 //ear
 const minEarY=-1*faceScale;
 const maxEarY=1*faceScale;
 const earShapes=["circle","triangle","square","none"];
-const minInnerEarWidth=0.1;
-const maxInnerEarWidth=0.6;
-const minInnerEarHeight=.1;
-const maxInnerEarHeight=.6;
+
 //mouth
-// const minMouthHeight=.5*faceScale;
-// const minMouthWidth=.5*faceScale;
-// const maxMouthWidth=7*faceScale;
 const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
-// const minMouthNoseGap=.25*faceScale;
+
 
 
 const myStrokeWeight=0.2*faceScale;
@@ -52,9 +35,9 @@ const blue=[31,62,109];
 const black=[0,0,0];
 const grey=[211,211,209];
 const white=[255,255,255];
-const myBgCol=[35,168,178];//light blue
-const green=[86,115,90];
 const darkGrey=[110,110,110];
+
+
 class myFace{
  
   headHeight=8*faceScale;
@@ -73,7 +56,7 @@ class myFace{
   eyeY=-3*faceScale;
   mouthColour=red;
   innerEarCol=this.skinColour;
-  eyeStroke=true; 
+  //eyeStroke=true; 
   earShape="none";
   noseCol=grey;
   
@@ -85,13 +68,12 @@ class myFace{
     
     this.earShape="square";
     this.noseDirection="both";
-  
+    this.pupilSize="wide";
  
-    this.innerEyeWidth=this.getAverage(minInnerEyeWidth,maxInnerEyeWidth);
-    this.innerEyeHeight=this.getAverage(minInnerEyeHeight,maxInnerEyeHeight);
+    // this.innerEyeWidth=this.getAverage(minInnerEyeWidth,maxInnerEyeWidth);
+    // this.innerEyeHeight=this.getAverage(minInnerEyeHeight,maxInnerEyeHeight);
     this.earY=this.getAverage(minEarY,maxEarY);
-    this.innerEarWidth=this.earWidth*this.getAverage(minInnerEarWidth,maxInnerEarWidth);
-    this.innerEarHeight=this.headHeight*this.getAverage(minInnerEarHeight,this.getMaxInnerEarHeight());
+   
   
     this.hasTeeth=true;
    
@@ -102,10 +84,7 @@ class myFace{
   getAverage(min, max){
     return map(0.5, 0, 1, min, max);
   }
-  
-  getMaxInnerEarHeight(){
-    return maxInnerEarHeight;
-  }
+
   
   drawSkin(){
     rectMode(CENTER);
@@ -200,23 +179,38 @@ class myFace{
     let eyeHeight=this.getAverage(leftEyeHeight,rightEyeHeight);
     let eyeWidth=this.getAverage(leftEyeWidth,rightEyeWidth);
 
+
+    
+    //console.log(this.innerEyeWidth+" "+this.innerEyeHeight); 
     //left eye
     fill(this.eyeBallCol);
-    
-   
-
     ellipse(segment_average(this.positions.left_eye)[0],this.eyeY, eyeWidth,eyeHeight);
-    fill(this.eyeCentreCol);
-    ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
-    
-    //draw right eye 
+   //draw right eye 
    
+   ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth, eyeHeight);
+
+  //pupils:
+  //calculate size:
+  if(this.pupilSize=="wide"){
+    this.innerEyeWidth=maxInnerEyeWidth;
+    this.innerEyeHeight=minInnerEyeHeight;
+  }
+  else if(this.pupilSize=="tall"){
+    this.innerEyeWidth=minInnerEyeWidth;
+    this.innerEyeHeight=maxInnerEyeHeight;
+  }
+  else{
     
-      fill(this.eyeBallCol);
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth, eyeHeight);
-      fill(this.eyeCentreCol);
-      
-      ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
+    this.innerEyeWidth=minInnerEyeWidth;
+    this.innerEyeHeight=minInnerEyeHeight;
+    
+  }
+//pupils:
+    fill(this.eyeCentreCol);
+    //left
+    ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
+    //right  
+    ellipse(segment_average(this.positions.right_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);
   }
   drawNose(){
     fill(this.noseCol);
@@ -234,7 +228,6 @@ class myFace{
     }
     //draw symetrical nose
     else{
-     
       triangle(this.noseX,this.positions.nose_bridge[0][1],this.positions.nose_tip[4][0],this.positions.nose_tip[2][1],this.positions.nose_tip[0][0],this.positions.nose_tip[2][1]);
     }
    
