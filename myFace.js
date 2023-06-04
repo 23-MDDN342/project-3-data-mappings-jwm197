@@ -4,12 +4,12 @@ const faceScale=0.5;
 const eyeHeightScalar=7;
 const sideBurns = [ "triangle", "square","none"];
 const minSideBurnHeight=.1*faceScale;
-const maxSideBurnHeight=4*faceScale;
+const maxSideBurnHeight=8*faceScale;
 //nose
 
 const noseDirections=["left","both","right"];
 //eyes
-const pupilSizes=["wide","tall","small"];
+const pupilSizes=["wide","tall","small","large","thin"];
 const minInnerEyeWidth=.3;
 const maxInnerEyeWidth=0.76;
 const minInnerEyeHeight=.3;
@@ -36,7 +36,7 @@ const black=[0,0,0];
 const grey=[211,211,209];
 const white=[255,255,255];
 const darkGrey=[110,110,110];
-
+const pink=[188,66,108];
 
 class myFace{
  
@@ -199,7 +199,15 @@ class myFace{
     this.innerEyeWidth=minInnerEyeWidth;
     this.innerEyeHeight=maxInnerEyeHeight;
   }
-  else{
+  else if(this.pupilSize=="large"){
+    this.innerEyeWidth=maxInnerEyeWidth;
+    this.innerEyeHeight=maxInnerEyeHeight;
+  }
+  else if(this.pupilSize=="thin"){
+    this.innerEyeWidth=minInnerEyeWidth/4;
+    this.innerEyeHeight=maxInnerEyeHeight;
+  }
+  else if (this.pupilSize=="small"){
     
     this.innerEyeWidth=minInnerEyeWidth;
     this.innerEyeHeight=minInnerEyeHeight;
