@@ -8,7 +8,7 @@ var DEBUG_MODE =// false;
 true;
 
 // this can be used to set the number of sliders to show
-var NUM_SLIDERS = 8;
+var NUM_SLIDERS = 9;
 
 // other variables can be in here too
 // here's some examples for colors used
@@ -105,7 +105,7 @@ function Face() {
     this.face.hasTeeth=0.5<map(settings[6], 0, 100, 0,1);
     
     this.face.numberOfteeth=Math.floor(map(settings[7], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
-
+    this.face.masculineLip=0.5<map(settings[8], 0, 100, 0,1);
     
   }
 
@@ -125,7 +125,7 @@ function Face() {
    
     settings[6]=map(this.face.hasTeeth?1:0, 0,1, 0, 100);
     settings[7]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
-    
+    settings[8]=map(this.face.masculineLip?1:0, 0,1, 0, 100);
     return settings;
   }
 }

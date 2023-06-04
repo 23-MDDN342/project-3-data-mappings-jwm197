@@ -1,4 +1,16 @@
-//my consts 
+//my consts
+//colours
+const red=[188,66,46];
+const yellow=[225,191,91];
+const blue=[31,62,109];
+const black=[0,0,0];
+const grey=[211,211,209];
+const white=[255,255,255];
+const darkGrey=[110,110,110];
+const pink=[188,66,108];
+
+
+
 //sideburns
 const faceScale=0.5;
 const eyeHeightScalar=7;
@@ -25,18 +37,9 @@ const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
 
 
-
 const myStrokeWeight=0.2*faceScale;
 
-//colours
-const red=[188,66,46];
-const yellow=[225,191,91];
-const blue=[31,62,109];
-const black=[0,0,0];
-const grey=[211,211,209];
-const white=[255,255,255];
-const darkGrey=[110,110,110];
-const pink=[188,66,108];
+
 
 class myFace{
  
@@ -54,14 +57,14 @@ class myFace{
   eyeBallCol=white;
   eyeCentreCol=black;
   eyeY=-3*faceScale;
-  mouthColour=red;
+ 
   innerEarCol=this.skinColour;
   //eyeStroke=true; 
   earShape="none";
   noseCol=grey;
   
   constructor(){
-    
+    this.masculineLip=true;
     this.sideBurn="triangle";
     
     this.sideBurnHeight=this.getAverage(minSideBurnHeight,maxSideBurnHeight);
@@ -70,8 +73,7 @@ class myFace{
     this.noseDirection="both";
     this.pupilSize="wide";
  
-    // this.innerEyeWidth=this.getAverage(minInnerEyeWidth,maxInnerEyeWidth);
-    // this.innerEyeHeight=this.getAverage(minInnerEyeHeight,maxInnerEyeHeight);
+  
     this.earY=this.getAverage(minEarY,maxEarY);
    
   
@@ -128,7 +130,12 @@ class myFace{
     }
   }
   drawMouth(){
-   
+    if(this.masculineLip){
+      this.mouthColour=red;
+    }
+    else{
+      this.mouthColour=pink;
+    }
     fill(this.mouthColour);
     rectMode(CENTER);
 

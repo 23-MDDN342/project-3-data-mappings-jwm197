@@ -1,1 +1,1 @@
-Even though as I said in my last message the eye pupil isn't going to be the most distingushable feature I have added a couple more discrete options to the size so there are now 5 options.  
+I have added an additional parameter to represent the lip colour which can either be red or pink which I will use to represent if the person is mascinline or feminine. I did this as I have ideas on how I want to train the other parameters but I think the model will have issues if presented with a male and female that have similar features
