@@ -7,8 +7,8 @@ const black=[0,0,0];
 const grey=[211,211,209];
 const white=[255,255,255];
 const darkGrey=[110,110,110];
-const pink=[188,66,108];
-
+const pink=[216,27,67];
+//const pink=[188,66,108];
 
 
 //sideburns
@@ -28,8 +28,8 @@ const minInnerEyeHeight=.3;
 const maxInnerEyeHeight=.63;
 
 //ear
-const minEarY=-1*faceScale;
-const maxEarY=1*faceScale;
+const minEarY=-2*faceScale;
+const maxEarY=2*faceScale;
 const earShapes=["circle","triangle","square","none"];
 
 //mouth
@@ -98,23 +98,29 @@ class myFace{
   drawFace(positions){
     this.positions=positions;
     strokeWeight(myStrokeWeight);
-    this.drawEar();
     this.drawHair();
     this.drawSkin();
-    this.drawMouth();
     this.drawNose();
+    this.drawEar();
+   
+    this.drawMouth();
+    
     this.drawEyes();
     
     
   }
   drawEar(){
+
     stroke(0);
     rectMode(CORNER);
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
-    this.innerEarWidth=.7*(this.positions.left_eyebrow[this.positions.left_eyebrow.length-1][0]-this.positions.left_eyebrow[0][0]);
-    this.innerEarHeight=1.1*(this.positions.right_eyebrow[this.positions.right_eyebrow.length-1][0]-this.positions.right_eyebrow[0][0]);
+    // this.innerEarWidth=.7*(this.positions.left_eyebrow[this.positions.left_eyebrow.length-1][0]-this.positions.left_eyebrow[0][0]);
+    // this.innerEarHeight=1.1*(this.positions.right_eyebrow[this.positions.right_eyebrow.length-1][0]-this.positions.right_eyebrow[0][0]);
+    this.innerEarWidth=this.positions.nose_tip[this.positions.nose_tip.length-1][0]-this.positions.nose_tip[0][0];
+    this.innerEarHeight=this.positions.nose_tip[2][1]-this.positions.nose_bridge[0][1];
+    
     if(this.earShape=="circle"){
       ellipseMode(CENTER);
       ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
