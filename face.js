@@ -4,8 +4,8 @@
  */  
 
 // remove this or set to false to enable full program (load will be slower)
-var DEBUG_MODE =// false;
-true;
+var DEBUG_MODE = //false;
+ true;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 9;

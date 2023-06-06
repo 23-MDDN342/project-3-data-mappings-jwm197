@@ -98,13 +98,12 @@ class myFace{
   drawFace(positions){
     this.positions=positions;
     strokeWeight(myStrokeWeight);
+    
+    this.drawEar();
     this.drawHair();
     this.drawSkin();
-    this.drawNose();
-    this.drawEar();
-   
     this.drawMouth();
-    
+    this.drawNose();
     this.drawEyes();
     
     
