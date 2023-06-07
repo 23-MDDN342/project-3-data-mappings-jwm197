@@ -1,1 +1,1 @@
-I have added assignment 1 into anim.html
+I have added some realestate related images into sample images as I thought it would be funny to have houses selling houses as the design of my faces resembles a house. I also tried adding in an image from The Simpsons because I have had comments that my colour scheme and design reminded a couple of people of it and I could totally see it, also because I thought it would be interesting to have a cartoony face on a cartoon and was currious if the ai would even find faces.  Unfortunately the model didn't so I can't use this idea. 
