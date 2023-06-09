@@ -6,7 +6,7 @@
 // remove this or set to false to enable full program (load will be slower)
 var DEBUG_MODE = 
 false;
- //true;
+//  true;
 
 // this can be used to set the number of sliders to show
 var NUM_SLIDERS = 9;
@@ -46,29 +46,33 @@ function Face() {
   //   scale(1);
   //  console.log(positions);
     this.face.drawFace(positions);
-   
-  stroke(225,255,255);
-   // this.draw_segment(positions.nose_bridge);
-     stroke(225,0,0);
-    //  this.draw_segment(positions.left_eye);
-    //  this.draw_segment(positions.right_eye);
-  //    this.draw_segment(positions.left_eyebrow);
-     //this.draw_segment(positions.nose_tip);
-    // // this.draw_segment(positions.bottom_lip);
-    //   stroke(0,225,0);
-    // // // //  this.draw_segment(positions.nose_tip);
-    //     this.draw_segment(positions.top_lip);
+  //  push();
+  //  translate (-3,0);
+  // stroke(0,255,0);
+  //  // this.draw_segment(positions.nose_bridge);
+  //   this.draw_segment(positions.top_lip);
+  //    stroke(225,0,0);
+  //   //  this.draw_segment(positions.left_eye);
+  //   //  this.draw_segment(positions.right_eye);
+  // //    this.draw_segment(positions.left_eyebrow);
+  //    //this.draw_segment(positions.nose_tip);
+  //    this.draw_segment(positions.bottom_lip);
+  //   //   stroke(0,225,0);
+  //   // // // //  this.draw_segment(positions.nose_tip);
+    
 
-      //  stroke(255);
-      //   ellipse(positions.left_eye[2][0],positions.left_eye[2][1],.05);
-      //   ellipse(positions.left_eye[4][0],positions.left_eye[4][1],.05);
-      //   ellipse(positions.right_eye[1][0],positions.right_eye[1][1],.05);
-      //   ellipse(positions.right_eye[5][0],positions.right_eye[5][1],.05);
-      //   ellipse(positions.top_lip[0][0],positions.top_lip[0][1],.05);
-      //   ellipse(positions.top_lip[6][0],positions.top_lip[6][1],.05);
-      //  ellipse(positions.top_lip[4][0],positions.top_lip[4][1],.05);
-      //  ellipse(positions.bottom_lip[3][0],positions.bottom_lip[3][1],.05);
-   //pop();
+  //      stroke(255);
+  //     //   ellipse(positions.left_eye[2][0],positions.left_eye[2][1],.05);
+  //     //   ellipse(positions.left_eye[4][0],positions.left_eye[4][1],.05);
+  //     //   ellipse(positions.right_eye[1][0],positions.right_eye[1][1],.05);
+  //     //   ellipse(positions.right_eye[5][0],positions.right_eye[5][1],.05);
+  //     //   ellipse(positions.top_lip[0][0],positions.top_lip[0][1],.05);
+  //     //   ellipse(positions.top_lip[6][0],positions.top_lip[6][1],.05);
+  //       ellipse(positions.top_lip[9][0],positions.top_lip[9][1],.05);
+  //       stroke(0,255,255);
+  //     ellipse(positions.bottom_lip[9][0],positions.bottom_lip[9][1],.05);
+     //console.log(positions.bottom_lip[9][1]-positions.top_lip[9][1]);
+  //  pop();
    }
   
   

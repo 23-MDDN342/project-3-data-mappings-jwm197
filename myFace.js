@@ -115,8 +115,7 @@ class myFace{
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
-    // this.innerEarWidth=.7*(this.positions.left_eyebrow[this.positions.left_eyebrow.length-1][0]-this.positions.left_eyebrow[0][0]);
-    // this.innerEarHeight=1.1*(this.positions.right_eyebrow[this.positions.right_eyebrow.length-1][0]-this.positions.right_eyebrow[0][0]);
+    
     this.innerEarWidth=this.positions.nose_tip[this.positions.nose_tip.length-1][0]-this.positions.nose_tip[0][0];
     this.innerEarHeight=this.positions.nose_tip[2][1]-this.positions.nose_bridge[0][1];
     
@@ -152,8 +151,23 @@ class myFace{
     translate(mouthX,0);
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
    //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
-    if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
-      line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
+    //if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
+    
+    let isMouthOpen=0.09<this.positions.bottom_lip[9][1]-this.positions.top_lip[9][1];
+    //  let isMouthOpen=true;
+    // // for(let i=8;i<10;i++){
+    // //   if(!(0.15<(this.positions.bottom_lip[i][1]-this.positions.top_lip[i][1]))){
+    // //     isMouthOpen=false;
+        
+    // //   }
+    // // }
+    // console.log(this.mouthHeight/0.09);
+    // if(segment_average(this.positions.bottom_lip)[1]
+    // segment_average(this.positions.top_lip)[1]
+    // )
+
+    if(isMouthOpen){  
+    line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
       for(let i=1;i<this.numberOfteeth;i++){
         line(-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY-this.mouthHeight/2,-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY+this.mouthHeight/2);
       }
