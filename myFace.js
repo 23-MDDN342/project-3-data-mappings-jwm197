@@ -31,13 +31,11 @@ const maxEarY=2*faceScale;
 const earShapes=["circle","triangle","square","none"];
 
 //mouth
-const minNumberOfteeth=0;
+const minNumberOfteeth=3;
 const maxNumberOfTeeth=8;
 
 
 const myStrokeWeight=0.2*faceScale;
-
-
 
 class myFace{
  
@@ -51,22 +49,18 @@ class myFace{
   hairColour=blue;
   
   sideBurnHeight=0;
-  //noseX=0;
   eyeBallCol=white;
   eyeCentreCol=black;
   eyeY=-3*faceScale;
  
   innerEarCol=this.skinColour;
-  //eyeStroke=true; 
   earShape="none";
   noseCol=grey;
   
   constructor(){
     this.masculineLip=true;
     this.sideBurn="triangle";
-    
     this.sideBurnHeight=this.getAverage(minSideBurnHeight,maxSideBurnHeight);
-    
     this.earShape="square";
     this.noseDirection="both";
     this.pupilSize="wide";
@@ -81,11 +75,12 @@ class myFace{
    
   
   }
+  //function to get the average of 2 numbers
   getAverage(min, max){
     return map(0.5, 0, 1, min, max);
   }
 
-  
+  //draws the main bit of the head
   drawSkin(){
     rectMode(CENTER);
     fill(this.skinColour);
@@ -110,13 +105,14 @@ class myFace{
 
     stroke(0);
     rectMode(CORNER);
+    //draw the side of the head
     fill(this.skinColour);
     rect(-this.headWidth/2-this.earWidth,-this.headHeight/2,this.earWidth,this.headHeight);
     fill(this.innerEarCol);
-    
+    //work out ear size
     this.innerEarWidth=this.positions.nose_tip[this.positions.nose_tip.length-1][0]-this.positions.nose_tip[0][0];
     this.innerEarHeight=this.positions.nose_tip[2][1]-this.positions.nose_bridge[0][1];
-    
+    //work out ear shape
     if(this.earShape=="circle"){
       ellipseMode(CENTER);
       ellipse(-this.headWidth/2-this.earWidth/2,this.earY,this.innerEarWidth,this.innerEarHeight);
@@ -132,6 +128,7 @@ class myFace{
     }
   }
   drawMouth(){
+    //work out colour of the mouth
     if(this.masculineLip){
       this.mouthColour=red;
     }
@@ -140,7 +137,7 @@ class myFace{
     }
     fill(this.mouthColour);
     rectMode(CENTER);
-
+    //draw mouth:
     this.mouthY=0.1+(segment_average(this.positions.bottom_lip)[1]+segment_average(this.positions.top_lip)[1])/2;
     this.mouthWidth=this.positions.top_lip[6][0]-this.positions.top_lip[0][0];
     this.mouthHeight=this.positions.bottom_lip[3][1]-this.positions.top_lip[4][1];
@@ -148,8 +145,8 @@ class myFace{
     push();
     translate(mouthX,0);
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
-   //draw teeth if face has teeth
-  
+   
+    //draw teeth if the mouth is open
     let isMouthOpen=0.09<this.positions.bottom_lip[9][1]-this.positions.top_lip[9][1];
     if(this.numberOfteeth>1&&isMouthOpen){  
     line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
@@ -166,7 +163,7 @@ class myFace{
     vertex(-this.headWidth/2-this.earWidth, -this.headHeight/2);
     vertex(this.headWidth/2,-this.hairHeight);
     vertex(this.headWidth/2, -this.headHeight/2);
-    
+    //work out side burn style:
     if(this.sideBurn=="square"){
     vertex(-this.headWidth/2, -this.headHeight/2);
     vertex(-this.headWidth/2, -this.headHeight/2+this.sideBurnHeight);  
@@ -222,7 +219,7 @@ class myFace{
     this.innerEyeHeight=minInnerEyeHeight;
     
   }
-//pupils:
+//draw pupils:
     fill(this.eyeCentreCol);
     //left
     ellipse(segment_average(this.positions.left_eye)[0], this.eyeY, eyeWidth*this.innerEyeWidth, eyeHeight*this.innerEyeHeight);

@@ -42,37 +42,9 @@ function Face() {
   //  *    bottom_lip, top_lip, nose_tip, nose_bridge, 
   //  */  
    this.draw = function(positions) {
-  //   push();
-  //   scale(1);
-  //  console.log(positions);
+ 
     this.face.drawFace(positions);
-  //  push();
-  //  translate (-3,0);
-  // stroke(0,255,0);
-  //  // this.draw_segment(positions.nose_bridge);
-  //   this.draw_segment(positions.top_lip);
-  //    stroke(225,0,0);
-  //   //  this.draw_segment(positions.left_eye);
-  //   //  this.draw_segment(positions.right_eye);
-  // //    this.draw_segment(positions.left_eyebrow);
-  //    //this.draw_segment(positions.nose_tip);
-  //    this.draw_segment(positions.bottom_lip);
-  //   //   stroke(0,225,0);
-  //   // // // //  this.draw_segment(positions.nose_tip);
-    
-
-  //      stroke(255);
-  //     //   ellipse(positions.left_eye[2][0],positions.left_eye[2][1],.05);
-  //     //   ellipse(positions.left_eye[4][0],positions.left_eye[4][1],.05);
-  //     //   ellipse(positions.right_eye[1][0],positions.right_eye[1][1],.05);
-  //     //   ellipse(positions.right_eye[5][0],positions.right_eye[5][1],.05);
-  //     //   ellipse(positions.top_lip[0][0],positions.top_lip[0][1],.05);
-  //     //   ellipse(positions.top_lip[6][0],positions.top_lip[6][1],.05);
-  //       ellipse(positions.top_lip[9][0],positions.top_lip[9][1],.05);
-  //       stroke(0,255,255);
-  //     ellipse(positions.bottom_lip[9][0],positions.bottom_lip[9][1],.05);
-     //console.log(positions.bottom_lip[9][1]-positions.top_lip[9][1]);
-  //  pop();
+  
    }
   
   
@@ -99,19 +71,19 @@ function Face() {
 
   /* set internal properties based on list numbers 0-100 */
   this.setProperties = function(settings) {
-    this.face.sideBurn=sideBurns[round(map(settings[0], 0, 100, 0,sideBurns.length))];
-    this.face.sideBurnHeight=map(settings[1], 0, 100, minSideBurnHeight, maxSideBurnHeight);
-    this.face.noseDirection=noseDirections[round(map(settings[2], 0, 100, 0,noseDirections.length))];
     
-    this.face.pupilSize=pupilSizes[round(map(settings[3], 0, 100, 0,pupilSizes.length))];
-    this.face.earShape=earShapes[round(map(settings[4], 0, 100, 0,earShapes.length))];
-    this.face.earY=map(settings[5], 0, 100, minEarY, maxEarY);
-   
-    this.face.masculineLip=0.5<map(settings[6], 0, 100, 0,1);
-    
-    this.face.numberOfteeth=Math.floor(map(settings[7], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
-    //this.face.masculineLip=0.5<map(settings[8], 0, 100, 0,1);
-    
+      this.face.sideBurn=sideBurns[round(map(settings[0], 0, 100, 0,sideBurns.length))];
+      this.face.sideBurnHeight=map(settings[1], 0, 100, minSideBurnHeight, maxSideBurnHeight);
+      this.face.noseDirection=noseDirections[round(map(settings[2], 0, 100, 0,noseDirections.length))];
+      
+      this.face.pupilSize=pupilSizes[round(map(settings[3], 0, 100, 0,pupilSizes.length))];
+      this.face.earShape=earShapes[round(map(settings[4], 0, 100, 0,earShapes.length))];
+      this.face.earY=map(settings[5], 0, 100, minEarY, maxEarY);
+
+      this.face.numberOfteeth=Math.floor(map(settings[7], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
+      this.face.masculineLip=0.5<map(settings[8], 0, 100, 0,1);
+      
+      
   }
 
   // /* get internal properties as list of numbers 0-100 */
@@ -128,7 +100,7 @@ function Face() {
     settings[4]=map(earShapes.indexOf(this.face.earShape), 0,earShapes.length, 0, 100);
     settings[5]= map(this.face.earY, minEarY, maxEarY, 0, 100);
    
-    settings[6]=map(this.face.masculineLip?1:0, 0,1, 0, 100);
+    
     settings[7]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
     settings[8]=map(this.face.masculineLip?1:0, 0,1, 0, 100);
     return settings;
