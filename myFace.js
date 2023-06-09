@@ -6,10 +6,8 @@ const blue=[31,62,109];
 const black=[0,0,0];
 const grey=[211,211,209];
 const white=[255,255,255];
-const darkGrey=[110,110,110];
-const pink=[216,27,67];
-//const pink=[188,66,108];
 
+const pink=[216,27,67];
 
 //sideburns
 const faceScale=0.5;
@@ -33,7 +31,7 @@ const maxEarY=2*faceScale;
 const earShapes=["circle","triangle","square","none"];
 
 //mouth
-const minNumberOfteeth=3;
+const minNumberOfteeth=0;
 const maxNumberOfTeeth=8;
 
 
@@ -150,23 +148,10 @@ class myFace{
     push();
     translate(mouthX,0);
     rect(0,this.mouthY,this.mouthWidth,this.mouthHeight);
-   //draw teeth if face has teeth and the teeth won't make the mouth completely filled with the stroke
-    //if(this.hasTeeth&&!this.mouthWidth/this.numberOfteeth+myStrokeWeight*1.1<this.mouthWidth/this.numberOfteeth*2-myStrokeWeight*1.1){
-    
+   //draw teeth if face has teeth
+  
     let isMouthOpen=0.09<this.positions.bottom_lip[9][1]-this.positions.top_lip[9][1];
-    //  let isMouthOpen=true;
-    // // for(let i=8;i<10;i++){
-    // //   if(!(0.15<(this.positions.bottom_lip[i][1]-this.positions.top_lip[i][1]))){
-    // //     isMouthOpen=false;
-        
-    // //   }
-    // // }
-    // console.log(this.mouthHeight/0.09);
-    // if(segment_average(this.positions.bottom_lip)[1]
-    // segment_average(this.positions.top_lip)[1]
-    // )
-
-    if(isMouthOpen){  
+    if(this.numberOfteeth>1&&isMouthOpen){  
     line(-this.mouthWidth/2,this.mouthY,this.mouthWidth/2,this.mouthY);
       for(let i=1;i<this.numberOfteeth;i++){
         line(-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY-this.mouthHeight/2,-this.mouthWidth/2+this.mouthWidth/this.numberOfteeth*i,this.mouthY+this.mouthHeight/2);
@@ -206,8 +191,6 @@ class myFace{
     let eyeWidth=this.getAverage(leftEyeWidth,rightEyeWidth);
 
 
-    
-    //console.log(this.innerEyeWidth+" "+this.innerEyeHeight); 
     //left eye
     fill(this.eyeBallCol);
     ellipse(segment_average(this.positions.left_eye)[0],this.eyeY, eyeWidth,eyeHeight);

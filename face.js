@@ -107,10 +107,10 @@ function Face() {
     this.face.earShape=earShapes[round(map(settings[4], 0, 100, 0,earShapes.length))];
     this.face.earY=map(settings[5], 0, 100, minEarY, maxEarY);
    
-    this.face.hasTeeth=0.5<map(settings[6], 0, 100, 0,1);
+    this.face.masculineLip=0.5<map(settings[6], 0, 100, 0,1);
     
     this.face.numberOfteeth=Math.floor(map(settings[7], 0, 100, minNumberOfteeth,maxNumberOfTeeth));
-    this.face.masculineLip=0.5<map(settings[8], 0, 100, 0,1);
+    //this.face.masculineLip=0.5<map(settings[8], 0, 100, 0,1);
     
   }
 
@@ -128,7 +128,7 @@ function Face() {
     settings[4]=map(earShapes.indexOf(this.face.earShape), 0,earShapes.length, 0, 100);
     settings[5]= map(this.face.earY, minEarY, maxEarY, 0, 100);
    
-    settings[6]=map(this.face.hasTeeth?1:0, 0,1, 0, 100);
+    settings[6]=map(this.face.masculineLip?1:0, 0,1, 0, 100);
     settings[7]=map(this.face.numberOfteeth, minNumberOfteeth,maxNumberOfTeeth, 0, 100);
     settings[8]=map(this.face.masculineLip?1:0, 0,1, 0, 100);
     return settings;
